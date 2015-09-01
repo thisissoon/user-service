@@ -1,0 +1,36 @@
+machine:
+  services:
+    - postgresql
+    - docker
+  environment:
+    REPO:  soon/user-service
+    TAG: $(sed 's/master/latest/;s/\//\-/' <<<$CIRCLE_BRANCH)
+    DATABASE_NAME: circle_test
+    DATABASE_USER: ubuntu
+    DATABASE_HOST: localhost
+    DATABASE_PORT: 5432
+
+dependencies:
+  override:
+    - docker build -t $REPO:$TAG .
+
+test:
+  override:
+    - docker run -it --name test --net=host -e DATABASE_NAME=$DATABASE_NAME -e DATABASE_USER=$DATABASE_USER -e DATABASE_HOST=$DATABASE_HOST -e DATABASE_PORT=$DATABASE_PORT $REPO:$TAG py.test --cov-report xml
+
+deployment:
+  prod:
+    branch: master
+    commands:
+      - docker tag $REPO:$TAG $REPO:prod
+      - docker push $REPO:prod
+  qa:
+    branch: /release\/.*/
+    commands:
+      - docker tag $REPO:$TAG $REPO:qa
+      - docker push $REPO:qa
+  latest:
+    branch: develop
+    commands:
+      - docker tag $REPO:$TAG $REPO:latest
+      - docker push $REPO:latest

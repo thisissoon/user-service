@@ -1,0 +1,27 @@
+userservice:
+  image: soon/user-service:latest
+  ports:
+    - 8000:8000
+  expose:
+    - 8000
+  links:
+    - postgres:database
+  environment:
+    - DATABASE_NAME=postgres
+    - DATABASE_USER=postgres
+    - DATABASE_PASSWORD=postgres
+    - DATABASE_HOST=database
+    - DATABASE_PORT=5432
+  volumes:
+    - /Users/radeklos/Documents/dev/user-service/app:/app/
+
+postgres:
+  image: soon/docker-postgresql
+  ports:
+    - 5432:5432
+  expose:
+    - 5432
+  environment:
+    - POSTGRESQL_USER=postgres
+    - POSTGRESQL_PASS=postgres
+    - POSTGRESQL_DB=postgres
