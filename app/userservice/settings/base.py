@@ -122,14 +122,9 @@ STATIC_URL = '/static/'
 
 SUIT_CONFIG = {
     'ADMIN_NAME': 'User service',
-    # 'MENU_ICONS': {
-    #     'sites': 'icon-folder-open',
-    #     'auth': 'icon-lock',
-    #     'video': 'icon-facetime-video',
-    #     'tagboard': 'icon-tasks',
-    #     'djcelery': 'icon-calendar',
-    #     'story': 'icon-comment',
-    #     'socialaccount': 'icon-user',
-    #     'authtoken': 'icon-barcode'
-    # },
+    'MENU_ICONS': {
+        'sites': 'icon-folder-open',
+        'auth': 'icon-lock',
+        'djcelery': 'icon-calendar',
+    },
 }
