@@ -47,7 +47,7 @@ def should_creste_new_user(client):
 
     created_user = get_user_model().objects.first()
     assert created_user.email == 'example@domain.com'
-    assert created_user.password != 'password'
+    assert client.login(username='username', password='password')
 
 
 @pytest.mark.django_db
@@ -68,6 +68,23 @@ def should_update_user(client):
     created_user = get_user_model().objects.get(pk=user.pk)
     assert 'example@domain.com' == created_user.email
     assert '' != response.content
+
+
+@pytest.mark.django_db
+def should_change_user_password(client):
+    user = factories.UserFactory.create(is_active=True)
+    payload = {
+        'username': 'username',
+        'password': 'password',
+    }
+    response = client.put(
+        reverse('user-detail', args=(user.pk, )),
+        data=json.dumps(payload),
+        content_type='application/json'
+    )
+    assert httplib.OK == response.status_code, response.content
+    assert '' != response.content
+    assert client.login(username='username', password='password')
 
 
 @pytest.mark.django_db
