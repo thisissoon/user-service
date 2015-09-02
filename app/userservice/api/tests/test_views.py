@@ -1,21 +1,22 @@
 # Standard Libs
 import json
-import httplib
 
 # Third Party Libs
+import httplib
 import pytest
+from django.contrib.auth import get_user_model
+from django.core.urlresolvers import reverse
 
 # First Party Libs
-from userservice.api.tests import factories, reverse
-from django.contrib.auth import get_user_model
+from userservice.api.tests import factories
 
 
 def test_user_detail_resource_is_reversible(client):
-    assert reverse('user', pk=1) == '/api/v1/user/1/'
+    assert reverse('user-detail', args=(1, )) == '/api/v1/users/1/'
 
 
 def test_user_list_resource_is_reversible(client):
-    assert reverse('user') == '/api/v1/user/'
+    assert reverse('user-list') == '/api/v1/users/'
 
 
 @pytest.mark.django_db
@@ -23,8 +24,8 @@ def should_return_only_active_users(client):
     factories.UserFactory.create(is_staff=True)
     factories.UserFactory.create(is_active=True)
     factories.UserFactory.create(is_active=False)
-    response = client.get(reverse('user'))
-    assert json.loads(response.content)['meta']['total_count'] == 1
+    response = client.get(reverse('user-list'))
+    assert json.loads(response.content)['total'] == 1
 
 
 @pytest.mark.django_db
@@ -37,11 +38,11 @@ def should_creste_new_user(client):
         'password': 'password',
     }
     response = client.post(
-        reverse('user'),
+        reverse('user-list'),
         data=json.dumps(payload),
         content_type='application/json'
     )
-    assert httplib.CREATED == response.status_code
+    assert httplib.CREATED == response.status_code, response.content
     assert '' != response.content
 
     created_user = get_user_model().objects.first()
@@ -53,14 +54,15 @@ def should_creste_new_user(client):
 def should_update_user(client):
     user = factories.UserFactory.create(is_active=True)
     payload = {
+        'username': 'username',
         'email': 'example@domain.com',
     }
     response = client.put(
-        reverse('user', pk=user.pk),
+        reverse('user-detail', args=(user.pk, )),
         data=json.dumps(payload),
         content_type='application/json'
     )
-    assert httplib.OK == response.status_code
+    assert httplib.OK == response.status_code, response.content
     assert '' != response.content
 
     created_user = get_user_model().objects.get(pk=user.pk)
@@ -71,7 +73,7 @@ def should_update_user(client):
 @pytest.mark.django_db
 def should_return_404_for_updating_non_existing_user(client):
     response = client.put(
-        reverse('user', pk=0),
+        reverse('user-detail', args=(0, )),
         data=json.dumps({'email': 'example@domain.com'}),
         content_type='application/json'
     )
@@ -81,8 +83,9 @@ def should_return_404_for_updating_non_existing_user(client):
 @pytest.mark.django_db
 def should_delete_user(client):
     user = factories.UserFactory.create(is_active=True)
+
     response = client.delete(
-        reverse('user', pk=user.pk)
+        reverse('user-detail', args=(user.pk, ))
     )
     assert httplib.OK == response.status_code
     assert '' == response.content
@@ -93,7 +96,7 @@ def should_delete_user(client):
 
 @pytest.mark.django_db
 def should_return_404_for_deletion_non_existing_user(client):
-    response = client.delete(reverse('user', pk=0))
+    response = client.delete(reverse('user-detail', args=(0, )))
     assert httplib.NOT_FOUND == response.status_code
 
 
@@ -105,9 +108,9 @@ def test_detail_field(client):
 
     expected = [
         'date_joined', 'email', 'first_name', 'id', 'last_login', 'last_name',
-        'resource_uri', 'username',
+        'username',
     ]
-    response = client.get(reverse('user', pk=user.id))
+    response = client.get(reverse('user-detail', args=(user.pk, )))
     assert set(expected) == set(json.loads(response.content).keys())
 
 
@@ -117,7 +120,7 @@ def test_list_field(client):
 
     expected = [
         'date_joined', 'email', 'first_name', 'id', 'last_login', 'last_name',
-        'resource_uri', 'username',
+        'username',
     ]
-    response = client.get(reverse('user'))
-    assert set(expected) == set(json.loads(response.content)['objects'][0].keys())
+    response = client.get(reverse('user-list'))
+    assert set(expected) == set(json.loads(response.content)['items'][0].keys())
