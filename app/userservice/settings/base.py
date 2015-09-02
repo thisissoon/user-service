@@ -31,9 +31,6 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
-    # 'rest_framework',
-    # 'rest_framework.authtoken',
-    'userservice.oauth',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -86,7 +83,7 @@ TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
 )
 
-WSGI_APPLICATION = 'cms.wsgi.application'
+WSGI_APPLICATION = 'userservice.wsgi.application'
 
 
 # Database

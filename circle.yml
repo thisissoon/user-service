@@ -15,6 +15,8 @@ dependencies:
     - docker build -t $REPO:$TAG .
 
 test:
+  pre:
+    - sed "s/<EMAIL>/$DOCKER_EMAIL/;s/<AUTH>/$DOCKER_AUTH/" < .dockercfg.template > ~/.dockercfg
   override:
     - docker run -it --name test --net=host -e DATABASE_NAME=$DATABASE_NAME -e DATABASE_USER=$DATABASE_USER -e DATABASE_HOST=$DATABASE_HOST -e DATABASE_PORT=$DATABASE_PORT $REPO:$TAG py.test --cov-report xml
 

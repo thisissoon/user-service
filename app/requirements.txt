@@ -1,5 +1,6 @@
 django-allauth==0.22.0
 django-suit==0.2.13
+django-tastypie==0.12.2
 django==1.8.3
 factory-boy==2.5.2
 psycopg2==2.6.1
@@ -9,4 +10,3 @@ pytest-flakes==1.0.0
 pytest-pep8==1.0.6
 pytest-xdist==1.12
 pytest==2.7.2
-django-tastypie==0.12.2
