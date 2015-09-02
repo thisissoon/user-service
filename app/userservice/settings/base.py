@@ -31,6 +31,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'rest_framework',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -51,7 +52,6 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    # 'corsheaders.middleware.CorsMiddleware',
 )
 
 AUTHENTICATION_BACKENDS = (
@@ -101,6 +101,18 @@ DATABASES = {
 }
 
 
+REST_FRAMEWORK = {
+    # 'DEFAULT_FILTER_BACKENDS': (
+    #     'rest_framework.filters.DjangoFilterBackend',
+    #     'rest_framework.filters.OrderingFilter'
+    # ),
+    'DEFAULT_PAGINATION_CLASS': 'userservice.api.paginators.Pagination',
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    )
+}
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
@@ -121,39 +133,11 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 
-# REST_FRAMEWORK = {
-#     'DEFAULT_FILTER_BACKENDS': (
-#         'rest_framework.filters.DjangoFilterBackend',
-#         'rest_framework.filters.OrderingFilter'
-#     ),
-#     'DEFAULT_PAGINATION_CLASS': 'cms.pagination.PageNumberPagination',
-#     'DEFAULT_AUTHENTICATION_CLASSES': (
-#         'rest_framework.authentication.TokenAuthentication',
-#     ),
-#     'PAGE_SIZE': 10,
-#     'PAGINATE_BY_PARAM': 'limit'
-# }
-
-
-# REST_FRAMEWORK_EXTENSIONS = {
-#     'DEFAULT_LIST_CACHE_KEY_FUNC': 'cms.app.caching.custom_list_cache_key_func',
-#     'DEFAULT_CACHE_RESPONSE_TIMEOUT': os.environ.get('CACHE_VIEWS_TTL', 5 * 60),
-#     'DEFAULT_AUTHENTICATION_CLASSES': (
-#         'rest_framework.authentication.TokenAuthentication',
-#     )
-# }
-
-
 SUIT_CONFIG = {
     'ADMIN_NAME': 'User service',
-    # 'MENU_ICONS': {
-    #     'sites': 'icon-folder-open',
-    #     'auth': 'icon-lock',
-    #     'video': 'icon-facetime-video',
-    #     'tagboard': 'icon-tasks',
-    #     'djcelery': 'icon-calendar',
-    #     'story': 'icon-comment',
-    #     'socialaccount': 'icon-user',
-    #     'authtoken': 'icon-barcode'
-    # },
+    'MENU_ICONS': {
+        'sites': 'icon-folder-open',
+        'auth': 'icon-lock',
+        'djcelery': 'icon-calendar',
+    },
 }

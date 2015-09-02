@@ -9,9 +9,6 @@ from userservice.settings.base import *  # NOQA
 
 SECRET_KEY = 's3cr3t k3y'
 
-# CELERY_ALWAYS_EAGER = True
-# CELERY_EAGER_PROPAGATES_EXCEPTIONS = True
-
 MEDIA_ROOT = tempfile.mkdtemp('media')
 
 PASSWORD_HASHERS = (
