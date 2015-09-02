@@ -51,7 +51,6 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    # 'corsheaders.middleware.CorsMiddleware',
 )
 
 AUTHENTICATION_BACKENDS = (
@@ -119,29 +118,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
-
-
-# REST_FRAMEWORK = {
-#     'DEFAULT_FILTER_BACKENDS': (
-#         'rest_framework.filters.DjangoFilterBackend',
-#         'rest_framework.filters.OrderingFilter'
-#     ),
-#     'DEFAULT_PAGINATION_CLASS': 'cms.pagination.PageNumberPagination',
-#     'DEFAULT_AUTHENTICATION_CLASSES': (
-#         'rest_framework.authentication.TokenAuthentication',
-#     ),
-#     'PAGE_SIZE': 10,
-#     'PAGINATE_BY_PARAM': 'limit'
-# }
-
-
-# REST_FRAMEWORK_EXTENSIONS = {
-#     'DEFAULT_LIST_CACHE_KEY_FUNC': 'cms.app.caching.custom_list_cache_key_func',
-#     'DEFAULT_CACHE_RESPONSE_TIMEOUT': os.environ.get('CACHE_VIEWS_TTL', 5 * 60),
-#     'DEFAULT_AUTHENTICATION_CLASSES': (
-#         'rest_framework.authentication.TokenAuthentication',
-#     )
-# }
 
 
 SUIT_CONFIG = {

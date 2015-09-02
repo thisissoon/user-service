@@ -8,5 +8,4 @@ from userservice.api.urls import api_urlpatterns
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^oauth/', include('userservice.oauth.urls')),
 ] + api_urlpatterns
