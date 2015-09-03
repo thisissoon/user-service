@@ -1,4 +1,4 @@
-# noqa
+# pragma: no cover
 
 # Standard Libs
 import tempfile
@@ -14,6 +14,7 @@ MEDIA_ROOT = tempfile.mkdtemp('media')
 PASSWORD_HASHERS = (
     'django.contrib.auth.hashers.MD5PasswordHasher',
 )
+
 DEBUG = False
 TEMPLATE_DEBUG = False
 TESTS_IN_PROGRESS = True

@@ -1,4 +1,4 @@
-# noqa
+# pragma: no cover
 
 # First Party Libs
 from userservice.settings.base import *  # NOQA

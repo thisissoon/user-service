@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# pragma: no cover
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 # Standard Libs
@@ -21,7 +21,6 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
 INSTALLED_APPS = (
     'suit',
     'django.contrib.admin',
@@ -34,6 +33,7 @@ INSTALLED_APPS = (
     'rest_framework',
     'allauth',
     'allauth.account',
+    'rest_framework.authtoken',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.google',
@@ -136,8 +136,10 @@ STATIC_URL = '/static/'
 SUIT_CONFIG = {
     'ADMIN_NAME': 'User service',
     'MENU_ICONS': {
-        'sites': 'icon-folder-open',
         'auth': 'icon-lock',
+        'authtoken': 'icon-barcode',
         'djcelery': 'icon-calendar',
+        'djcelery': 'icon-calendar',
+        'sites': 'icon-folder-open',
     },
 }
