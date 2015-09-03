@@ -1,4 +1,5 @@
-# noqa
+# pragma: no cover
+
 # Standard Libs
 import tempfile
 

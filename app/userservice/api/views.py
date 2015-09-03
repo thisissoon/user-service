@@ -1,9 +1,8 @@
 # Third Party Libs
 from django.contrib.auth.models import User
-from rest_framework import viewsets
-from userservice.api import serializers
+from rest_framework import status, viewsets
 from rest_framework.response import Response
-from rest_framework import status
+from userservice.api import serializers
 
 
 class BaseModelViewSet(viewsets.ModelViewSet):
