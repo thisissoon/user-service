@@ -88,6 +88,22 @@ def should_change_user_password(client):
 
 
 @pytest.mark.django_db
+def should_return_weak_password(client):
+    user = factories.UserFactory.create(is_active=True)
+    payload = {
+        'username': 'username',
+        'password': 'pswd',
+    }
+    response = client.put(
+        reverse('user-detail', args=(user.pk, )),
+        data=json.dumps(payload),
+        content_type='application/json'
+    )
+    assert httplib.BAD_REQUEST == response.status_code, response.content
+    assert '{"password":["Ensure this field has at least 8 characters."]}' == response.content
+
+
+@pytest.mark.django_db
 def should_return_404_for_updating_non_existing_user(client):
     response = client.put(
         reverse('user-detail', args=(0, )),
