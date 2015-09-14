@@ -1,4 +1,7 @@
 # pragma: no cover
+''' Used for testing - no cache, simple password hashing, temporary file as
+media root, ...
+'''
 
 # Standard Libs
 import tempfile

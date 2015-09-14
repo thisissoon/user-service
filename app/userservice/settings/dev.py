@@ -1,4 +1,7 @@
 # pragma: no cover
+''' Used for local testing. Module shouldn't use any external services like
+storages or shared cached.
+'''
 
 # Standard Libs
 import tempfile

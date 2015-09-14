@@ -1,9 +1,17 @@
+'''
+Serializers
+-----------
+
+'''
+
 # Third Party Libs
 from django.contrib.auth.models import User
 from rest_framework import serializers
 
 
 class BaseSerializer(serializers.ModelSerializer):
+    ''' Base serializer class
+    '''
     pass
 
 
@@ -17,6 +25,11 @@ class UserSerializer(BaseSerializer):
                   'last_name', 'username', 'password')
 
     def create(self, validated_data):
+        ''' Make sure that user password is encrypted with Django function
+
+        Arguments:
+            validated_data (dict): user data dict
+        '''
         obj = super(UserSerializer, self).create(validated_data)
         if validated_data.get('password'):
             obj.set_password(validated_data['password'])
@@ -24,6 +37,11 @@ class UserSerializer(BaseSerializer):
         return obj
 
     def update(self, instance, validated_data):
+        ''' Make sure that user password is encrypted with Django function
+
+        Arguments:
+            validated_data (dict): user data dict
+        '''
         obj = super(UserSerializer, self).update(instance, validated_data)
         if validated_data.get('password'):
             obj.set_password(validated_data['password'])

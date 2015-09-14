@@ -1,34 +1,35 @@
 Settings
 ========
 
-Standard Django settings modules.
 
+Base
+----
 
-Submodules
-----------
+.. automodule:: userservice.settings.base
+    :members:
+    :undoc-members:
+    :show-inheritance:
 
-userservice.settings.base module
---------------------------------
+Development
+-----------
 
-This module is based and should not be used directly. It's intended to load
-middlewares, installed apps, configure another module like Django REST framework, etc.
+.. automodule:: userservice.settings.dev
+    :members:
+    :undoc-members:
+    :show-inheritance:
 
+QA
+--
 
-userservice.settings.dev module
--------------------------------
+.. automodule:: userservice.settings.qa
+    :members:
+    :undoc-members:
+    :show-inheritance:
 
-Used for local testing. Module shouldn't use any external services like storages or
-shared cached.
+Test
+----
 
-
-userservice.settings.qa module
-------------------------------
-
-Used for QA the module is most similar to production environment.
-
-
-userservice.settings.test module
---------------------------------
-
-Used for testing - no cache, simple password hashing, temporary file as media
-root, ...
+.. automodule:: userservice.settings.test
+    :members:
+    :undoc-members:
+    :show-inheritance:
