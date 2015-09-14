@@ -1,4 +1,8 @@
 # pragma: no cover
+''' This module is based and should not be used directly. It's intended to load
+middlewares, installed apps, configure another module like Django REST
+framework, etc.
+'''
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 # Standard Libs

@@ -1,4 +1,6 @@
 # pragma: no cover
+''' Used for QA the module is most similar to production environment.
+'''
 
 # First Party Libs
 from userservice.settings.base import *  # NOQA

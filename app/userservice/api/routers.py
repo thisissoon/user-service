@@ -1,3 +1,10 @@
+'''
+Routers
+-------
+
+Register api routers
+'''
+
 from rest_framework import routers
 from userservice.api import views
 
