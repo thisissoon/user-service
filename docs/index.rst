@@ -6,15 +6,22 @@ Welcome to User Service's documentation!
     :undoc-members:
 
 
-Contents:
----------
+Dev packages:
+-------------
 
 .. toctree::
    :maxdepth: 3
 
-   userservice.api
-   userservice.settings
+   userservice
 
+
+Api docs:
+---------
+
+.. toctree::
+    :maxdepth: 3
+
+    docs.app
 
 
 Indices and tables

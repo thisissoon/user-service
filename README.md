@@ -13,7 +13,7 @@ OAuth or through REST api resources.
 - `DATABASE_PORT`: database port (5432)
 
 
-### Run
+## Run
 
 Run the project using a container:
 
@@ -22,19 +22,10 @@ docker run --rm -it soon/user-service:latest
 ```
 
 
-### Development:
+## Development:
 
 Example of fugu file. Once you build it you can run CMS by `fug run api`. CMS and API
 should be accessible on your localdocker on `/admin` and `/api`.
-
-``` yaml
-=======
-# User service
-
-User service is Django app handles user authentication and authorization with
-3rd party services i.e. Facebook, Google, Instagram and Twitter.
-
-## Dev
 
 Example of fugu.yaml file:
 
@@ -68,7 +59,7 @@ bash: &bash
     command: /bin/sh
 ```
 
-## Settings
+### Settings
 
 App has several different settings:
 
@@ -91,7 +82,7 @@ pip install sphinxcontrib-napoleon
 ```
 
 Sphinx requires some project dependencies for generate full documentation without
-any warnings use the container and extend your `fugu.yaml`.
+any warnings use the container for that - extend your `fugu.yaml`.
 
 ``` yaml
 docs:
