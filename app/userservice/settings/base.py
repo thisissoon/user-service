@@ -106,6 +106,10 @@ DATABASES = {
 }
 
 
+# Django allauth
+ACCOUNT_ADAPTER = 'userservice.app.adapter.MyAccountAdapter'
+
+
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
