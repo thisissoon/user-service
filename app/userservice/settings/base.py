@@ -34,15 +34,16 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
-    'rest_framework',
     'allauth',
     'allauth.account',
-    'rest_framework.authtoken',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.instagram',
     'allauth.socialaccount.providers.twitter',
+    'rest_auth',
+    'rest_framework',
+    'rest_framework.authtoken',
 )
 
 SITE_ID = 1
@@ -106,11 +107,6 @@ DATABASES = {
 
 
 REST_FRAMEWORK = {
-    # 'DEFAULT_FILTER_BACKENDS': (
-    #     'rest_framework.filters.DjangoFilterBackend',
-    #     'rest_framework.filters.OrderingFilter'
-    # ),
-    'DEFAULT_PAGINATION_CLASS': 'userservice.api.paginators.Pagination',
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
     )
