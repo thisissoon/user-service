@@ -9,4 +9,5 @@ Userservice
     :maxdepth: 3
 
     userservice.api
+    userservice.app
     userservice.settings
