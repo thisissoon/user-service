@@ -1,5 +1,7 @@
 # User Service
 
+[![Documentation Status](https://readthedocs.org/projects/user-service/badge/?version=latest)](http://user-service.readthedocs.org/en/latest/?badge=latest)
+
 User service is Django app for user management. App can create new users using
 OAuth or through REST api resources.
 
@@ -67,27 +69,3 @@ App has several different settings:
 - `dev`: simple settings using a temporary directory for storing media
 - `qa`: same as development but uses AWS as storage - most similar to production
 - `test`: used for unit testing
-
-
-## Docs
-
-You can run `make` to build a documentation. If you choose HTML documentation
-the documentation should be in /docs/_build/html/index.html.
-
-To generate new documentation rst files run `sphinx-apidoc -o docs/ app/`. You
-have to install `napoleon` Sphinx extensions to generate Google style docs
-
-```
-pip install sphinxcontrib-napoleon
-```
-
-Sphinx requires some project dependencies for generate full documentation without
-any warnings use the container for that - extend your `fugu.yaml`.
-
-``` yaml
-docs:
-    <<: *bash
-    name: docs
-    volume:
-      - .../dev/user-service:/app/
-```

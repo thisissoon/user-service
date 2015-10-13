@@ -21,7 +21,7 @@ Api docs:
 .. toctree::
     :maxdepth: 3
 
-    docs.app
+    docs.api
 
 
 Indices and tables
