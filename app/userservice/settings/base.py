@@ -1,4 +1,8 @@
-# -*- coding: utf-8 -*-
+# pragma: no cover
+''' This module is based and should not be used directly. It's intended to load
+middlewares, installed apps, configure another module like Django REST
+framework, etc.
+'''
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 # Standard Libs
@@ -21,7 +25,6 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
 INSTALLED_APPS = (
     'suit',
     'django.contrib.admin',
@@ -38,6 +41,9 @@ INSTALLED_APPS = (
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.instagram',
     'allauth.socialaccount.providers.twitter',
+    'rest_auth',
+    'rest_framework',
+    'rest_framework.authtoken',
 )
 
 SITE_ID = 1
@@ -51,7 +57,6 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    # 'corsheaders.middleware.CorsMiddleware',
 )
 
 AUTHENTICATION_BACKENDS = (
@@ -101,6 +106,17 @@ DATABASES = {
 }
 
 
+# Django allauth
+ACCOUNT_ADAPTER = 'userservice.app.adapter.MyAccountAdapter'
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    )
+}
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
@@ -121,39 +137,13 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 
-# REST_FRAMEWORK = {
-#     'DEFAULT_FILTER_BACKENDS': (
-#         'rest_framework.filters.DjangoFilterBackend',
-#         'rest_framework.filters.OrderingFilter'
-#     ),
-#     'DEFAULT_PAGINATION_CLASS': 'cms.pagination.PageNumberPagination',
-#     'DEFAULT_AUTHENTICATION_CLASSES': (
-#         'rest_framework.authentication.TokenAuthentication',
-#     ),
-#     'PAGE_SIZE': 10,
-#     'PAGINATE_BY_PARAM': 'limit'
-# }
-
-
-# REST_FRAMEWORK_EXTENSIONS = {
-#     'DEFAULT_LIST_CACHE_KEY_FUNC': 'cms.app.caching.custom_list_cache_key_func',
-#     'DEFAULT_CACHE_RESPONSE_TIMEOUT': os.environ.get('CACHE_VIEWS_TTL', 5 * 60),
-#     'DEFAULT_AUTHENTICATION_CLASSES': (
-#         'rest_framework.authentication.TokenAuthentication',
-#     )
-# }
-
-
 SUIT_CONFIG = {
     'ADMIN_NAME': 'User service',
-    # 'MENU_ICONS': {
-    #     'sites': 'icon-folder-open',
-    #     'auth': 'icon-lock',
-    #     'video': 'icon-facetime-video',
-    #     'tagboard': 'icon-tasks',
-    #     'djcelery': 'icon-calendar',
-    #     'story': 'icon-comment',
-    #     'socialaccount': 'icon-user',
-    #     'authtoken': 'icon-barcode'
-    # },
+    'MENU_ICONS': {
+        'auth': 'icon-lock',
+        'authtoken': 'icon-barcode',
+        'djcelery': 'icon-calendar',
+        'djcelery': 'icon-calendar',
+        'sites': 'icon-folder-open',
+    },
 }

@@ -1,4 +1,7 @@
-# noqa
+# pragma: no cover
+''' Used for testing - no cache, simple password hashing, temporary file as
+media root, ...
+'''
 
 # Standard Libs
 import tempfile
@@ -9,14 +12,12 @@ from userservice.settings.base import *  # NOQA
 
 SECRET_KEY = 's3cr3t k3y'
 
-# CELERY_ALWAYS_EAGER = True
-# CELERY_EAGER_PROPAGATES_EXCEPTIONS = True
-
 MEDIA_ROOT = tempfile.mkdtemp('media')
 
 PASSWORD_HASHERS = (
     'django.contrib.auth.hashers.MD5PasswordHasher',
 )
+
 DEBUG = False
 TEMPLATE_DEBUG = False
 TESTS_IN_PROGRESS = True
