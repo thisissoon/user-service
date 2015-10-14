@@ -1,18 +1,15 @@
-FROM alpine:3.2
+FROM debian:jessie
 
 # Install OS Dependencies
-RUN apk update && apk add \
-    ca-certificates \
-    postgresql-dev \
-    python-dev \
-    build-base \
-    && rm -rf /var/cache/apk/*
-
-# Install pip
-RUN wget https://bootstrap.pypa.io/get-pip.py -O - | python
+RUN apt-get update && \
+    apt-get install -y \
+        libpq-dev \
+        postgresql-client \
+        python-dev \
+        python-pip
 
 # Ensure a SOON user exists
-RUN adduser SOON -D
+RUN useradd SOON
 
 EXPOSE 8000
 
